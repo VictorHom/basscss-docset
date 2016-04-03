@@ -14,7 +14,7 @@ cur.execute('CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path);')
 docpath = './'
 
 page = open(os.path.join(docpath,'Basscss.html')).read()
-soup = BeautifulSoup(page)
+soup = BeautifulSoup(page, "html.parser")
 
 any = re.compile('.*')
 for tag in soup.find_all('a', {'href':any}):
@@ -23,9 +23,9 @@ for tag in soup.find_all('a', {'href':any}):
         path = tag.attrs['href'].strip()
         if path[0] == "#":
         	path =  "Basscss.html"+ path
-        if path.split('#')[0] not in ('index.html'):
-            cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (?,?,?)', (name, 'func', path))
-            print 'name: %s, path: %s' % (name, path)
+        if path.split('#')[0] not in ('index.html') and 'https' not in path:
+          cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (?,?,?)', (name, 'func', path))
+          print 'name: %s, path: %s' % (name, path)
 
 db.commit()
 db.close()
