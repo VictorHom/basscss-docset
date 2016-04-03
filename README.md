@@ -7,6 +7,6 @@ http://www.basscss.com/ is great and really awesome. I in no way am involve with
 
 To help out, create an issue and make a pull request. I'll check it out.
 
-Run the script to generate the .dsidx file.
+Run the script to populate the .dsidx file. Note that in the .dsidx file, the path column should only have local paths (cannot have paths that have http or / at the start). The general path should be Basscss.html#link)
 
 Sqlitebrowser is helpful for checking the results of the script parsing and generating data.
