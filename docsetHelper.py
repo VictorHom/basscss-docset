@@ -23,7 +23,7 @@ for tag in soup.find_all('a', {'href':any}):
         path = tag.attrs['href'].strip()
         if path[0] == "#":
         	path =  "Basscss.html"+ path
-        if path.split('#')[0] not in ('index.html') and 'https' not in path:
+        if path.split('#')[0] not in ('index.html') and 'https' not in path and path[0] != '/':
           cur.execute('INSERT OR IGNORE INTO searchIndex(name, type, path) VALUES (?,?,?)', (name, 'func', path))
           print 'name: %s, path: %s' % (name, path)
 
